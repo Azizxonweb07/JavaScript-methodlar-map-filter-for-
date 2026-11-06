@@ -1,0 +1,138 @@
+const products = [
+  { title: "Phone", price: 500, inStock: true },
+  { title: "Laptop", price: 1200, inStock: false },
+  { title: "Mouse", price: 25, inStock: true },
+  { title: "Monitor", price: 300, inStock: true },
+];
+
+// 1. Hamma mahsulotlarning umumiy narxi
+const totalPrice = products.reduce((sum, product) => sum + product.price, 0);
+console.log(totalPrice); // 2025
+
+// 2. Omborda bor mahsulotlarning umumiy narxi
+const inStockTotal = products
+  .filter((product) => product.inStock)
+  .reduce((sum, product) => sum + product.price, 0);
+console.log(inStockTotal); // 825
+
+// 3. Narx bo'yicha arzondan qimmatga (asl massiv o'zgarmaydi)
+const sortedByPrice = [...products].sort((a, b) => a.price - b.price);
+console.log(sortedByPrice);
+// Mouse (25), Monitor (300), Phone (500), Laptop (1200)
+
+// 4. 10% chegirma, butun obyekt saqlanadi
+const discounted = products.map((product) => ({
+  ...product,
+  price: product.price * 0.9,
+}));
+console.log(discounted);
+// Phone 450, Laptop 1080, Mouse 22.5, Monitor 270
+
+// 5. Hamma nomlar bitta matn
+const names = products.map((product) => product.title).join(", ");
+console.log(names); // "Phone, Laptop, Mouse, Monitor"
+
+
+
+
+
+
+
+const products = [
+  { title: "Phone", price: 500, inStock: true },
+  { title: "Laptop", price: 1200, inStock: false },
+  { title: "Mouse", price: 25, inStock: true },
+  { title: "Monitor", price: 300, inStock: true },
+];
+
+const chegirma = products.map((product) => ({
+    ...product,
+    price: product.price * 0.9
+}))
+
+
+Kod nima qiladi
+
+products ichida 4 ta mahsulot bor. Kod har bir mahsulotning nusxasini oladi, faqat narxini 10% arzonlashtiradi. Boshqa maydonlar (title, inStock) o’zgarmaydi.
+
+Qadamma-qadam
+
+map massivdagi har bir elementni birma-bir oladi. Birinchi aylanishda product bu:
+
+javascript
+{ title: "Phone", price: 500, inStock: true }
+
+Keyin shu yozuv ishlaydi:
+
+javascript
+{
+  ...product,
+  price: product.price * 0.9
+}
+...product mahsulotning hamma maydonlarini yangi obyektga ko’chiradi:
+title: "Phone", price: 500, inStock: true
+price: product.price * 0.9 yangi price yozadi: 500 * 0.9 = 450. U eski price: 500 ning o’rniga yoziladi, chunki u keyin turibdi.
+
+Natija: { title: "Phone", price: 450, inStock: true }
+
+Shu narsa 4 ta mahsulot uchun takrorlanadi va 4 ta yangi obyektdan iborat massiv chiqadi.
+
+({}) qismi
+
+Bu yerda ikkita alohida narsa bor: oddiy qavs ( ) va figurali qavs { }.
+
+{ } JS da ikki xil ma’noda ishlatiladi:
+
+funksiyaning tanasi (ichidagi kod)
+obyekt
+
+Strelkali funksiyada => { ni ko’rsa, JS buni funksiya tanasi deb o’ylaydi.
+
+Shu sababli ikkita yozuv farq qiladi:
+
+Qavssiz (xato):
+
+javascript
+products.map((product) => {
+  ...product,
+  price: product.price * 0.9
+})
+
+JS { } ni funksiya tanasi deb oladi, ichidagini kod deb o’qiydi, ...product, qatorida xato beradi. Agar xato bermasa ham, return yozilmagani uchun natija undefined bo’ladi.
+
+Qavs bilan (to’g’ri):
+
+javascript
+products.map((product) => ({
+  ...product,
+  price: product.price * 0.9
+}))
+
+Oddiy qavs ( ) JS ga aytadi: “bu funksiya tanasi emas, bu obyekt”. Va obyekt avtomatik qaytariladi, return yozish shart emas.
+
+Xuddi shu kod return bilan
+
+Qavssiz yozmoqchi bo’lsangiz, return kerak:
+
+javascript
+const chegirma = products.map((product) => {
+  return {
+    ...product,
+    price: product.price * 0.9,
+  };
+});
+
+Bu yuqoridagi bilan bir xil natija beradi. ({ }) shu kodning qisqa yozilishi.
+
+Eslab qolish uchun qoida
+
+Strelkali funksiyadan darhol obyekt qaytarmoqchi bo’lsangiz, => dan keyin ({ ... }) yozing.
+
+
+
+
+
+
+
+
+
