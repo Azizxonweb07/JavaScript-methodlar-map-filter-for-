@@ -1,0 +1,36 @@
+const products = [
+  { title: "Phone", price: 500, inStock: true },
+  { title: "Laptop", price: 1200, inStock: false },
+  { title: "Mouse", price: 25, inStock: true },
+  { title: "Monitor", price: 300, inStock: true },
+];
+
+const productsName = products.filter((stock) => stock.inStock).map((stockName) => stockName.title)
+console.log(productsName)
+
+const discount = products.map((discount) => discount.price * 0.9)
+console.log(discount)   
+
+const highPrice = products.find((highPrice) => highPrice.price > 100)
+console.log(highPrice)
+
+
+const allActive = products.every((user) => user.inStock);
+console.log(allActive)
+
+const result = products.some((value) => value.price > 1000);
+console.log(result)
+
+// Meni hatolarim
+//  Parametr nomlari chalg’itadi. Hozir stock, discount, user 
+// deb yozdingiz, lekin ular aslida mahsulot. products.filter(...)
+// ichida har doim product deng:
+
+const inStockTitles = products
+  .filter((product) => product.inStock)
+  .map((product) => product.title);
+
+const discountedPrices = products.map((product) => product.price * 0.9);
+const firstExpensive = products.find((product) => product.price > 100);
+const allInStock = products.every((product) => product.inStock);
+const hasVeryExpensive = products.some((product) => product.price > 1000);
