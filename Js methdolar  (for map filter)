@@ -1,0 +1,42 @@
+const prices = [120, 45, 300, 80, 15];
+const users = [
+  { name: "Ali", age: 17 },
+  { name: "Vali", age: 25 },
+  { name: "Sardor", age: 31 },
+];
+
+
+// let newArr = []
+
+// for(let i = 0; i < prices.length; i++){
+//   let result = prices[i] * 2
+//   newArr.push(result)
+// }
+
+// console.log(newArr)
+
+// let result = prices.map((item) => item * 2)
+// console.log(result)
+
+// let result = prices.filter((item) => item < 100)
+// console.log(result)
+
+
+// let result = users.map((item) => item.name)
+
+// console.log(result)
+
+
+// let result = users.filter((item) => item.age > 18)
+// console.log(result)
+
+
+
+let result = users.filter((item) => item.age > 18).map((item) => item.name)
+console.log(result)
+
+
+
+
+
+
